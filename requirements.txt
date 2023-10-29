@@ -1,1 +1,5 @@
 yamlu
+google-cloud-storage
+matplotlib
+tqdm
+pydot

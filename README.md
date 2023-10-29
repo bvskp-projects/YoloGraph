@@ -11,19 +11,24 @@ Handwritten Images to Digital Format (Equivalently text)
 ## Setup
 
 - Install yamlu (in requirements.txt)
-- Run yolog.py
+- Run yolog
 
 ```sh
 pip install -r requirements.txt
-./yolog.py -l=INFO preprocess
+./yolog -l=INFO preprocess
 ```
 
 yolog, short for YoloGraph.
 
 ## Roadmap
 
-- [x] Diagrams Dataset Preprocessing
-- [ ] DIDI Dataset
+- [x] Diagrams Dataset
+- [x] DIDI Dataset
+
+## Timing
+
+- Diagrams dataset takes roughly on the order of 5 minutes from scratch and half a minute if data is already downloaded.
+- DIDI dataset on the other hand, takes more than 10 minutes. Use the --skip-didi option to skip this processing.
 
 ## Design
 

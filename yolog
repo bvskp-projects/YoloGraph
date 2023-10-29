@@ -18,7 +18,7 @@ def main():
 
   if args.action == 'preprocess':
     # Download and preprocess the dataset
-    preprocess()
+    preprocess(cleanup=args.clean, skip_didi=args.skip_didi)
 
 
 def parse_args():
@@ -43,13 +43,20 @@ def parse_args():
   subparser = parser.add_subparsers(dest='action', required=True)
 
   # Command for preprocess command
-  _ = subparser.add_parser('preprocess')
+  preprocess_parser = subparser.add_parser('preprocess')
+  preprocess_parser.add_argument('--clean', action='store_true',
+                                 help='Remove the dataset before preprocessing')
+  preprocess_parser.add_argument('--skip-didi', action='store_true',
+                                 help='Skip time consuming DIDI preprocessing')
 
   return parser.parse_args()
 
 
 class CustomFormatter(logging.Formatter):
-    """Logging colored formatter, adapted from https://stackoverflow.com/a/56944256/3638629"""
+    """
+    See
+    https://alexandra-zaharia.github.io/posts/make-your-own-custom-color-formatter-with-python-logging/
+    """
 
     grey = '\x1b[38;21m'
     blue = '\x1b[38;5;39m'

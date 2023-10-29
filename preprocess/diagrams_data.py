@@ -24,7 +24,7 @@ CLASSES = {
 }
 
 
-def preprocess_diagrams():
+def preprocess_diagrams(cleanup=False):
   """
   Happens in the following steps:
 
@@ -32,30 +32,20 @@ def preprocess_diagrams():
   - Create the required directories
   - Create classes.txt for each dataset containing categories
   - Parse json files to retrieve bounding boxes
-  - Move input images from GitHub to the dataset directory
+  - Copy input images from GitHub to the dataset directory
   """
-  # Check GitHub repo exists
-  if DATASETS_ROOT.exists() or DATASETS_ROOT.parent.exists():
-    logging.critical("handwritten-diagram-datasets already exists." +
-                     " Please back it up first ...")
-    return
-
-  # Check if data directory already exists
-  if Path(POSTPROC_DIR).exists():
-    logging.critical("data directory already exists." +
-                     "Please back it up first ...")
-    return
-
+  if cleanup:
+    rmdata()
   download_diagrams()
   create_dirs()
   save_classes()
   parse_bb()
-  move_images()
-  cleanup()
+  copy_images()
 
 
 def parse_bb():
   """ Parse json files to retrieve bounding boxes """
+  logging.info("Processing bounding box labels...")
   # For fast index lookup given category.
   inv_classes = {dataset: {
      cat: i for i, cat in enumerate(categories)
@@ -81,16 +71,17 @@ def parse_bb():
                         file.write(f'{cls} {x} {y} {w} {h}\n')
 
 
-def move_images():
+def copy_images():
   """ Must happen after everything since we destructively modify the repo """
-  logging.info("Moving images ...")
+  logging.info("Copying images ...")
   for dataset in DATASETS:
     for split in splits(dataset):
         src_dir = Path(PREPROC_DIR, dataset, split)
         dst_dir = Path(POSTPROC_DIR, dataset, split, 'images')
         if dst_dir.exists():
-            shutil.rmtree(dst_dir)
-        shutil.move(src_dir, dst_dir)
+          logging.warn(f"Overwriting {dst_dir} ...")
+          shutil.rmtree(dst_dir)
+        shutil.copytree(src_dir, dst_dir)
 
 
 def save_classes():
@@ -103,14 +94,13 @@ def save_classes():
               file.write(f'{cat}\n')
 
 
-def cleanup():
-  """ Remove the downloaded dataset """
-  logging.info("Removing handwritten-diagram-datasets ...")
-  shutil.rmtree(Path(PREPROC_DIR).parent)
-
-
 def download_diagrams():
   """ Download the dataset from GitHub """
+  # Check GitHub repo exists
+  if DATASETS_ROOT.exists():
+    logging.warn("Skipping download since handwritten-diagram-datasets exists")
+    return
+
   logging.info("Downloading handwritten-diagram-datasets from GitHub ...")
   subprocess.run(["git", "clone", GITHUB_URL, "--depth=1"])
 
@@ -119,8 +109,7 @@ def create_dirs():
   """ Create the required directories """
   for dataset in DATASETS:
     for split in splits(dataset):
-      Path(POSTPROC_DIR, dataset, split, 'labels').mkdir(
-        parents=True, exist_ok=True)
+      Path(POSTPROC_DIR, dataset, split, 'labels').mkdir(parents=True, exist_ok=True)
 
 
 def splits(dataset):
@@ -146,3 +135,9 @@ def collect_categories():
       shapes[dataset] = list(categories)
 
   print(shapes)
+
+def rmdata():
+  data_dir = Path(PREPROC_DIR).parent
+  if data_dir.exists():
+    logging.info(f"Removing {data_dir} ...")
+    shutil.rmtree(data_dir)
