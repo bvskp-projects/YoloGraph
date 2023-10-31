@@ -1,0 +1,5 @@
+train: ../yolo_dataset/train/images
+val: ../yolo_dataset/test/images
+
+nc: 6
+names: ["circle", "rectangle", "parallelogram", "diamond", "arrow", "text"]

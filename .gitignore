@@ -2,8 +2,10 @@
 data/
 handwritten-diagram-datasets/
 didi_dataset/
+yolo_dataset/
 
 .vscode
+.ipynb_checkpoints/
 
 # Python
 
@@ -34,3 +36,6 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+
+# Ignore yolov5 folder for now
+yolov5/
