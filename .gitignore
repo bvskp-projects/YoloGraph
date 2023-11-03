@@ -3,6 +3,13 @@ data/
 handwritten-diagram-datasets/
 didi_dataset/
 yolo_dataset/
+text_data/
+text_dataset/
+text_dataset_lmdb/
+text_data.zip
+
+# Ignore pretrained models for now
+pretrained_models/*
 
 .vscode
 .ipynb_checkpoints/
@@ -39,3 +46,6 @@ MANIFEST
 
 # Ignore yolov5 folder for now
 yolov5/
+
+# Ignore deep-text-recognition-benchmark folder for now
+deep-text-recognition-benchmark/
