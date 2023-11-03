@@ -26,7 +26,7 @@ To create the FCA/FCB yolo dataset, clone the yolov5 directory, and train a mode
 ```sh
 python yolo_init.py
 cd yolov5
-python train.py --img 640 --epochs 100 --data ../yolo_dataset.yaml --weights ../yolov5s.pt
+python train.py --img 640 --epochs 100 --data ../yolo_dataset.yaml --weights ../pretrained_models/yolov5s.pt
 ```
 
 ## Text Setup and Sample Model Training
