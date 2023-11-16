@@ -49,3 +49,6 @@ yolov5/
 
 # Ignore deep-text-recognition-benchmark folder for now
 deep-text-recognition-benchmark/
+
+# Ignore what's in the models folder for now
+models/*
