@@ -38,6 +38,11 @@ cd deep-text-recognition-benchmark
 python train.py --train_data ../train_dataset_lmdb/train/ --valid_data ../train_dataset_lmdb/test/ --saved_model ../pretrained_models/TPS-ResNet-BiLSTM-Attn-case-sensitive.pth --FT --select_data / --batch_ratio 1 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --workers 0 --num_iter 300 --valInterval 5 --sensitive
 ```
 
+To see some sample results run this command while in ```deep-text-recognition/``` directory with ```TRBA_best_accuracy.pth``` as recently trained model and sample images in ```demo_image/``` directory:
+```sh
+python demo.py --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --image_folder demo_image/ --saved_model ../models/TRBA_best_accuracy.pth --sensitive
+```
+
 ## Using the trained models to decode diagrams
 
 Look at **ExampleDiagramDecoding.ipynb** for how to do this. The code used in this notebook come from the text directory as well as the decode_diagrams.py file.
