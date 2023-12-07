@@ -46,7 +46,7 @@ python demo.py --Transformation TPS --FeatureExtraction ResNet --SequenceModelin
 
 ## Using the trained models to decode diagrams
 
-Look at **ExampleDiagramDecoding.ipynb** for how to do this. The code used in this notebook come from the text directory as well as the decode_diagrams.py file.
+Look at **ExampleDiagramDecoding.ipynb** for how to do this. The code used in this notebook come from the text directory as well as the ```decode_diagrams.py``` file. To download the pretrained model files go to the google drive or click here: [node detection model](https://drive.google.com/file/d/1ufcdRJSt2qbtIDRsJA9z57-7nLS99a9O/view?usp=drive_link), [text recognition model](https://drive.google.com/file/d/1I9GpfRgAOmtQCqcgYDYLzQWD-EMl9Q1N/view?usp=drive_link). 
 
 ## References
 
