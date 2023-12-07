@@ -1,12 +1,13 @@
-# YoloGraph
+# YoloGraph: Offline Hand-Drawn Diagram Conversion
 
-Handwritten Images to Digital Format (Equivalently text)
+Handwritten Images to Digital Format
 
 ## Objective
 
+- Accurate diagram node detection
+- Accurate text recognition
+- Accurate arrow key point extrapolation
 - Quick inference Time
-- Learning object detection
-- Patience Training :P
 
 ## Setup
 
@@ -20,16 +21,16 @@ pip install -r requirements.txt
 
 yolog, short for YoloGraph.
 
-## Yolo Setup and Sample Model Training
+## Node Detection Model Setup and Training
 
-To create the FCA/FCB yolo dataset, clone the yolov5 directory, and train a model see below. Yolov5 package dependencies were already installed with requirements.txt above. Download the pre-trained yolov5s.pt model from their github.
+To create the FCA/FCB node detection dataset, clone the yolov5 directory, and train a model see below. Yolov5 package dependencies were already installed with requirements.txt above. Download the pre-trained yolov5s.pt model from their github.
 ```sh
 python yolo_init.py
 cd yolov5
 python train.py --img 640 --epochs 100 --data ../yolo_dataset.yaml --weights ../pretrained_models/yolov5s.pt
 ```
 
-## Text Setup and Sample Model Training
+## Text Recognition Model Setup and Training
 
 Download the text_data.zip file from the google drive, extract it to text_data/ directory. Download the pre-trained TRBA-case sensitive model. Then run the code below to create the text_dataset_lmdb, and clone the deep-text-recognition-benchmark directory. 
 ```sh
@@ -47,25 +48,6 @@ python demo.py --Transformation TPS --FeatureExtraction ResNet --SequenceModelin
 
 Look at **ExampleDiagramDecoding.ipynb** for how to do this. The code used in this notebook come from the text directory as well as the decode_diagrams.py file.
 
-## Roadmap
+## References
 
-- [x] Diagrams Dataset
-- [x] DIDI Dataset
-
-## Timing
-
-- Diagrams dataset takes roughly on the order of 5 minutes from scratch and half a minute if data is already downloaded.
-- DIDI dataset on the other hand, takes more than 10 minutes. Use the --skip-didi option to skip this processing.
-
-## Design
-
-First, preprocess data into the specified data format.
-
-### Data Format
-
-...
-
-## How to Contribute
-
-To add a new command, simply add a new subparser/action in yolog.py.
-...
+For a list of references please look at our report. 
