@@ -285,7 +285,8 @@ def draw_digital_diagram(outcome, image):
         tup_box = tup[2]
         tup_score = tup[3]
 
-        color = COLORS[int(tup_label)]
+        #color = COLORS[int(tup_label)]
+        color = (0,0,0)
         if tup_class == "text":
             desired_width = int(tup_box[2]) - int(tup_box[0])
             desired_height = int(tup_box[3]) - int(tup_box[1])
