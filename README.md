@@ -10,7 +10,8 @@ Handwritten Images to Digital Format (Equivalently text)
 
 ## Setup
 
-- Install yamlu (in requirements.txt)
+- Create an environment with python version 3.10
+- Install packages in requirements.txt
 - Run yolog
 
 ```sh
