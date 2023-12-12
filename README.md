@@ -1,6 +1,6 @@
 # YoloGraph: Offline Hand-Drawn Diagram Conversion
 
-Handwritten Images to Digital Format
+Handwritten Diagram Images to Digital Format. Please see ``YoloGraph_Final_Report.pdf`` for more details.
 
 ## Objective
 
